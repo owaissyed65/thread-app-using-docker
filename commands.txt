@@ -1,0 +1,14 @@
+npx prisma migrate dev --name create_user_table
+
+// for enter in db to docker of postgres
+docker ps //this will give u a id
+
+docker exec -it 46a1f9bf84c0 bash
+su postgres
+psql
+\l //lists
+\c threads
+\d database
+
+open docker in background
+docker compose up -d
