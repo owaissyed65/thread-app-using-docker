@@ -1,7 +1,8 @@
 import { createHmac, randomBytes } from "node:crypto";
 import { prismaClient } from "../lib/db";
 import jwt from "jsonwebtoken";
-const SECRET_KEY = "GRAPHQLTHREAD@142@WEBDEVELOPER@FULLSTACk";
+const SECRET_KEY: string =
+  process.env.SECRET_KEY || "GRAPHQLTHREAD@142@WEBDEVELOPER@FULLSTACk";
 export interface CreateUserPayload {
   firstName: string;
   lastName?: string;
@@ -55,7 +56,7 @@ class UserService {
     const hashPassword = this.generateHash(userSalt, password);
     if (hashPassword !== user.password) throw new Error("Invalid Credentials");
     const token = this.createToken(user.id, user.email);
-    return token
+    return token;
   }
 }
 export default UserService;
