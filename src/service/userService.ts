@@ -58,5 +58,14 @@ class UserService {
     const token = this.createToken(user.id, user.email);
     return token;
   }
+  // decode token
+  public static decodeJWTToken(token: string) {
+    return jwt.verify(token, SECRET_KEY);
+  }
+  // getuser by id
+  public static getUserById(id: string){
+    const user = prismaClient.users.findUnique({where:{id}})
+    return user
+  }
 }
 export default UserService;
